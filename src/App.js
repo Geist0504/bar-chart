@@ -37,11 +37,8 @@ class App extends Component {
     console.log(cleanData)
     return (
       <div className="App">
-        <div className='App-header'>
-          <h2>d3ia dashboard</h2>
-        </div>
         <div>
-          <BarChart data={cleanData} size={[500,500]} />
+          <BarChart data={cleanData} size={[700,600]} />
         </div>
       </div>
     );

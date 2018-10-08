@@ -37,7 +37,6 @@ class BarChart extends Component {
       const xAxis = axisBottom(xScale).tickFormat(format("d"));
       const yAxis = axisLeft(yScaleAxis);
 
-
    select(node)
       .selectAll('rect')
       .data(this.props.data)
@@ -50,7 +49,7 @@ class BarChart extends Component {
       .exit()
       .remove()
 
-   select(node).append("g").attr("transform", "translate(0, 500)").attr("id", "x-axis")
+   select(node).append("g").attr("transform", "translate(0, 600)").attr("id", "x-axis")
    .call(xAxis);
    
    select(node).append("g").attr("transform", "translate(50, 0)").attr("id", "y-axis")
@@ -73,7 +72,7 @@ render() {
       <div>
          <h1 id='title'> d3i dashboard</h1>
          <svg ref={node => this.node = node}
-         width={650} height={650}>
+         width={800} height={750}>
          </svg>
       </div>
       )
