@@ -5,6 +5,8 @@ import { max } from 'd3-array';
 import { select } from 'd3-selection';
 import { axisBottom } from 'd3-axis';
 import { axisLeft } from 'd3-axis';
+import { tickFormat } from 'd3-axis';
+import { format } from 'd3-format';
 
 class BarChart extends Component {
    constructor(props){
@@ -18,17 +20,22 @@ class BarChart extends Component {
       this.createBarChart()
    }
    createBarChart() {
+      const width = this.props.size[0]
+      const height = this.props.size[1]
+      const dataCount = this.props.data.length
       const node = this.node
       const padding = 50
-      const dataMax = max(this.props.data)
       const xScale = scaleLinear()
-                     .domain([0, max(this.props.data, (d) => d[0])])
-                     .range([padding, this.props.size[0]]);
+                     .domain([1947, max(this.props.data, (d) => d[0])])
+                     .range([padding, this.props.size[0] + padding]);
       const yScale = scaleLinear()
          .domain([0, max(this.props.data, (d) => d[1])])
-         .range([this.props.size[1], padding])
-      const xAxis = axisBottom(xScale);
-      const yAxis = axisLeft(yScale);
+         .range([0, this.props.size[1]])
+      const yScaleAxis = scaleLinear()
+         .domain([0, max(this.props.data, (d) => d[1])])
+         .range([this.props.size[1], 0])
+      const xAxis = axisBottom(xScale).tickFormat(format("d"));
+      const yAxis = axisLeft(yScaleAxis);
 
 
    select(node)
@@ -53,17 +60,20 @@ class BarChart extends Component {
       .selectAll('rect')
       .data(this.props.data)
       .style('fill', '#fe9922')
-      .attr('x', (d,i) => i * 5 + padding)
-      .attr('y', d => this.props.size[1] - yScale(d[1]))
+      .attr('x', (d,i) => i * width/dataCount + padding)
+      .attr('y', d => height - yScale(d[1]))
       .attr('height', d => yScale(d[1]))
-      .attr('width', 25)
+      .attr('width', width/dataCount)
+      .attr('class', 'bar')
+      .attr('data-date', d => d[3][0])
+      .attr('data-gdp', d => d[1])
    }
 render() {
       return(
       <div>
-         <h1 id='title'> d3ia dashboard</h1>
+         <h1 id='title'> d3i dashboard</h1>
          <svg ref={node => this.node = node}
-         width={550} height={550}>
+         width={650} height={650}>
          </svg>
       </div>
       )
