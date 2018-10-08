@@ -37,8 +37,8 @@ class App extends Component {
     console.log(cleanData)
     return (
       <div className="App">
-        <div>
-          <BarChart data={cleanData} size={[700,600]} />
+        <div className="container">
+          <BarChart data={cleanData} size={[700,500]} />
         </div>
       </div>
     );
