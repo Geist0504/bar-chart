@@ -92,7 +92,8 @@ class BarChart extends Component {
 render() {
       return(
       <div>
-         <h1 id='title'>US GDP 1947-2015</h1>
+        <h1>United States GDP</h1>
+         <h2 id='title'>Gross Domestic Product 1947-2015</h2>
          <svg ref={node => this.node = node}
          width={800} height={550}>
          </svg>
