@@ -53,18 +53,18 @@ class BarChart extends Component {
       .exit()
       .remove()
 
-   select(node).append("g").attr("transform", "translate(0, 500)").attr("id", "x-axis")
+   select(node).append("g").attr("transform", "translate(0, 520)").attr("id", "x-axis")
    .call(xAxis);
    
-   select(node).append("g").attr("transform", "translate(50, 0)").attr("id", "y-axis")
+   select(node).append("g").attr("transform", "translate(50, 20)").attr("id", "y-axis")
    .call(yAxis);
 
    select(node)
       .selectAll('rect')
       .data(this.props.data)
-      .style('fill', '#fe9922')
+      .style('fill', '#228b22')
       .attr('x', (d,i) => i * width/dataCount + padding)
-      .attr('y', d => height - yScale(d[1]))
+      .attr('y', d => height - yScale(d[1])+20)
       .attr('height', d => yScale(d[1]))
       .attr('width', width/dataCount)
       .attr('class', 'bar')
@@ -76,7 +76,7 @@ class BarChart extends Component {
            .style('height', yScale(d[1]) + 'px')
            .style('width', barWidth + 'px')
            .style('opacity', .9)
-           .style('left', (i * barWidth) + 70 + 'px')
+           .style('left', (i * barWidth) + 50 + 'px')
            .style('top', height - yScale(d[1]) + 100 + 'px')
          tooltip.transition()
            .duration(200)
@@ -84,7 +84,7 @@ class BarChart extends Component {
          tooltip.html(d[0] + ' ' + d[2] +  '<br>' + d[1] + ' Billion')
            .attr('data-date', d[3][0])
            .style('left', (i * width/dataCount) + 100 + 'px')
-           .style('top', height - 50 + 'px')
+           .style('top', height - 20 + 'px')
 
       })
       .on('mouseout', function(d, i){
@@ -95,7 +95,7 @@ class BarChart extends Component {
 render() {
       return(
       <div>
-         <h1 id='title'> d3i dashboard</h1>
+         <h1 id='title'>US GDP 1947-2015</h1>
          <svg ref={node => this.node = node}
          width={800} height={550}>
          </svg>

@@ -56,4 +56,15 @@ body,
   box-shadow: 2px 2px 20px;
   background-color: white;
   max-height: 90%;
+  border-radius: 10px;
+}
+
+#title{
+  font-size: 1.5em;
+  font-family: Helvetica;
+  -webkit-transform: translate(-320px,200px) rotate(270deg);
+     -moz-transform: translate(-320px,200px) rotate(270deg);
+      -ms-transform: translate(-320px,200px) rotate(270deg);
+       -o-transform: translate(-320px,200px) rotate(270deg);
+          transform: translate(-320px,200px) rotate(270deg);
 }
